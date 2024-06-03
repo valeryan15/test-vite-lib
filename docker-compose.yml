@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  my-storybook:
+    build:
+      context: ./
+      target: develop
+      dockerfile: .docker/nodejs/Dockerfile
+    image: my-storybook
+    container_name: my-storybook
+    init: true
+    command: yarn storybook
+    ports:
+      - '6006:6006'
+    volumes:
+      - .:/var/www
+      - /var/www/node_modules
