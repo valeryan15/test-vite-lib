@@ -1,166 +1,84 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import IconCheck from '../Icons/Check/IconCheck';
-import Button, { ButtonSize, ButtonStyle } from './Button';
+import Button, { ButtonSize, ButtonStyle, ButtonTag } from './Button';
+import { fn } from '@storybook/test';
 
 const meta = {
   title: 'UI/Button',
   component: Button,
+  parameters: {
+    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
+    layout: 'centered',
+    pseudo: { hover: true, focus: true, active: true },
+  },
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
+  tags: ['autodocs'],
+  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  args: { onClick: fn() },
 } as Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// const dataTestId = 'button-id-1';
-
-// const Template: Story = (args: ButtonProps) => {
-//   const onClick = () => {
-//     alert('You click to button');
-//   };
-//   return <Button {...args} onClick={onClick} data-testid={dataTestId} />;
-// };
-
-export const MdPrimary: Story = {
+export const Primary: Story = {
   args: {
-    children: 'Text button',
-    size: ButtonSize.Md,
-    styleMode: ButtonStyle.Primary,
+    children: 'Submit',
   },
 };
 
-export const Sm: Story = {
+export const Secondary: Story = {
   args: {
-    children: 'Text button',
-    size: ButtonSize.Sm,
-    styleMode: ButtonStyle.Primary,
-  },
-};
-
-export const MdSecondary: Story = {
-  args: {
-    children: 'Text button',
-    size: ButtonSize.Md,
+    children: 'Submit',
     styleMode: ButtonStyle.Secondary,
   },
 };
 
-export const MdOutline: Story = {
+export const Danger: Story = {
   args: {
-    children: 'Text button',
-    size: ButtonSize.Md,
-    styleMode: ButtonStyle.Outline,
-  },
-};
-
-export const MdGhost: Story = {
-  args: {
-    children: 'Text button',
-    size: ButtonSize.Md,
-    styleMode: ButtonStyle.Ghost,
-  },
-};
-
-export const MdDanger: Story = {
-  args: {
-    children: 'Text button',
-    size: ButtonSize.Md,
+    children: 'Submit',
     styleMode: ButtonStyle.Danger,
   },
 };
 
-export const MdDangerGhost: Story = {
+export const Large: Story = {
   args: {
-    children: 'Text button',
-    size: ButtonSize.Sm,
-    styleMode: ButtonStyle.DangerGhost,
+    children: 'Submit',
+    size: ButtonSize.Large,
   },
 };
 
-export const MdPrimaryLoader: Story = {
+export const Medium: Story = {
   args: {
-    children: 'Text button',
-    size: ButtonSize.Md,
-    styleMode: ButtonStyle.Primary,
+    children: 'Submit',
+    size: ButtonSize.Medium,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    children: 'Submit',
+    size: ButtonSize.Small,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: 'Submit',
+    disabled: true,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    children: 'Submit',
     loading: true,
   },
 };
-
-export const MdPrimaryLoaderInText: Story = {
+export const Link: Story = {
   args: {
-    children: 'Text button',
-    size: ButtonSize.Md,
-    styleMode: ButtonStyle.Primary,
-    loading: true,
-    loaderInText: true,
+    children: 'Submit',
+    as: ButtonTag.Link,
+    href: 'www.google.com',
+    target: '_blank',
   },
 };
-
-export const DefaultWithIcon: Story = {
-  args: {
-    children: (
-      <>
-        {'Text button'}
-        <div style={{ height: '24px', width: '24px', marginLeft: '8px' }}>
-          <IconCheck height={24} width={24} />
-        </div>
-      </>
-    ),
-    size: ButtonSize.Md,
-    styleMode: ButtonStyle.Primary,
-  },
-};
-
-export const DefaultWithIcon2: Story = {
-  args: {
-    children: (
-      <>
-        <div style={{ height: '24px', width: '24px', marginRight: '8px' }}>
-          <IconCheck height={24} width={24} />
-        </div>
-        {'Любое длинное предложение, которое мы видим'}
-      </>
-    ),
-    size: ButtonSize.Md,
-    styleMode: ButtonStyle.Primary,
-  },
-};
-//
-// export const OnlyIcon = Template.bind({});
-// OnlyIcon.args = {
-//   children: (
-//     <>
-//       <div style={{ height: '24px', width: '24px' }}>
-//         <IconCheck height={24} width={24} />
-//       </div>
-//     </>
-//   ),
-//   size: ButtonSize.Md,
-//   styleMode: ButtonStyle.Primary,
-//   onlyIcon: true,
-// };
-//
-// export const Link = Template.bind({});
-// Link.args = {
-//   children: 'Lint to cdek',
-//   size: ButtonSize.Md,
-//   styleMode: ButtonStyle.Primary,
-//   as: 'a',
-//   href: 'https://www.cdek.ru',
-//   target: '_blank',
-// };
-//
-// const TemplateGroupButton: ComponentStory<typeof Button> = (args) => (
-//   <>
-//     <Button {...args} />
-//     <Button {...args} />
-//     <Button {...args} />
-//   </>
-// );
-//
-// export const GroupButton = TemplateGroupButton.bind({});
-// GroupButton.args = {
-//   children: 'Text button',
-//   size: ButtonSize.Md,
-//   styleMode: ButtonStyle.Primary,
-// };

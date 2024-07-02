@@ -1,0 +1,60 @@
+$DefaultColor: $Black;
+$PrimaryColor: $White;
+$SecondaryColor: $White;
+$DangerColor: $White;
+
+$BorderRadius: 4px;
+
+@mixin button-reset {
+  [type='button'],
+  [type='reset'],
+  [type='submit'] {
+    -webkit-appearance: button;
+  }
+}
+
+@mixin focus-visible($color: $ColorFocusFormElements) {
+  outline: 2px solid $color !important;
+}
+
+@mixin button-style($bgColor: transparent, $color: $DefaultColor) {
+  background-color: $bgColor;
+  color: $color;
+
+  &:hover {
+    background-color: lighten($bgColor, 10%)
+  }
+
+  &:active {
+    background-color: darken($bgColor, 5%);
+  }
+  &:focus-visible {
+    @include focus-visible(rgba($bgColor, 30%));
+  }
+}
+
+.button {
+  @include button-reset;
+  font-size: $font-size;
+  font-family: $font-family;
+  line-height: $font-size * 1.25;
+  outline: none;
+  border: 0 none;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  padding: 8px 16px;
+  border-radius: $BorderRadius;
+
+  &-primary {
+    @include button-style($Primary, $PrimaryColor);
+  }
+
+  &-secondary {
+    @include button-style($Secondary, $SecondaryColor);
+  }
+
+  &-danger {
+    @include button-style($Danger, $DangerColor);
+  }
+}

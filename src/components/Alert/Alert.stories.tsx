@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Alert, { AlertVariant } from './Alert';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Button } from '../Button';
 
 const meta = {
   title: 'UI/Alert',
@@ -20,13 +18,13 @@ type Story = StoryObj<typeof meta>;
 
 export const DefaultWithButton: Story = {
   render: (args) => {
-    const [isOpen, setOpen] = useState(true);
-
     const textAlert = (
       <span>
-        Этот алерт можно закрыть на крестик или управлять с кнопки
+        Простой текст. Простой текст. Простой текст. Простой текст. Простой
+        текст. Простой текст. Простой текст.
         <br />
-        Его параметры можно менять из панели Storybook
+        Простой текст. Простой текст. Простой текст. Простой текст. Простой
+        текст.
       </span>
     );
 
@@ -38,39 +36,7 @@ export const DefaultWithButton: Story = {
           gridRowGap: '24px',
         }}
       >
-        <Button onClick={() => setOpen(!isOpen)}>
-          Показать или Скрыть Alert
-        </Button>
-        <Alert
-          title={'Алерт всегда на странице'}
-          text={
-            'Этот алерт не изменяется. Его нельзя закрыть, у него нет крестика'
-          }
-          isOpen={true}
-          variant={AlertVariant.Info}
-          data-testid={'alert-test-id-0'}
-        />
-        <Alert
-          {...args}
-          title={'Меня можно закрыть'}
-          text={textAlert}
-          isOpen={isOpen}
-          handleClose={() => {
-            alert('close');
-            setOpen(false);
-          }}
-          data-testid={'alert-test-id-1'}
-        />
-        <Alert
-          title={'Алерт всегда на странице'}
-          text={
-            'Этот алерт не изменяется. Его нельзя закрыть, у него нет крестика'
-          }
-          isOpen={true}
-          variant={AlertVariant.Success}
-          withBackground={true}
-          data-testid={'alert-test-id-2'}
-        />
+        <Alert {...args} title={'Меня можно закрыть'} text={textAlert} />
       </div>
     );
   },
@@ -80,11 +46,6 @@ const defaultArgs = {
   title: 'Заголовок',
   text: 'Описание. Рекомендовано не более двух строк полезного текста',
   isOpen: true,
-};
-
-const defaultArgsWithBackground = {
-  ...defaultArgs,
-  withBackground: true,
 };
 
 export const VariantDanger: Story = {
@@ -112,50 +73,5 @@ export const VariantInfo: Story = {
   args: {
     ...defaultArgs,
     variant: AlertVariant.Info,
-  },
-};
-
-export const VariantWithBackgroundDanger: Story = {
-  args: {
-    ...defaultArgsWithBackground,
-    variant: AlertVariant.Danger,
-  },
-};
-
-export const VariantWithBackgroundSuccess: Story = {
-  args: {
-    ...defaultArgsWithBackground,
-    variant: AlertVariant.Success,
-  },
-};
-
-export const VariantWithBackgroundWarning: Story = {
-  args: {
-    ...defaultArgsWithBackground,
-    variant: AlertVariant.Warning,
-  },
-};
-
-export const VariantWithBackgroundInfo: Story = {
-  args: {
-    ...defaultArgsWithBackground,
-    variant: AlertVariant.Info,
-  },
-};
-
-export const EmptyTextAlert: Story = {
-  args: {
-    variant: AlertVariant.Info,
-    title: 'Empty',
-    text: '',
-    isOpen: true,
-  },
-};
-
-export const NoIconTextAlert: Story = {
-  args: {
-    ...defaultArgsWithBackground,
-    variant: AlertVariant.Info,
-    withoutIcon: true,
   },
 };
